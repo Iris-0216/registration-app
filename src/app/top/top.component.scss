@@ -8,7 +8,7 @@
   & .registration-form{
     color: $main-text-color;
     width: 50%;
-    height: 88%;
+    height: 86%;
     position: absolute;
     top:50%;
     left:50%;
@@ -26,6 +26,10 @@
       display: flex;
       flex-direction: column;
       margin: 0 auto;
+
+      & .options {
+        justify-content: space-around;
+      }
     }
 
     & button{

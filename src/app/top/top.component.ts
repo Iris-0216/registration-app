@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ApplicantListService } from '../applicant-list/services/applicant-list.service';
+import { Applicant } from '../models/applicant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top',
@@ -13,7 +16,12 @@ import {
 })
 export class TopComponent implements OnInit {
   registrationForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  gender = 'female';
+  constructor(
+    private fb: FormBuilder,
+    private applicantListService: ApplicantListService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.buildForm();
   }
@@ -22,7 +30,6 @@ export class TopComponent implements OnInit {
       name: [null, [Validators.required]],
       email: [null, [Validators.required]],
       birthday: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
     });
   }
 
@@ -35,9 +42,21 @@ export class TopComponent implements OnInit {
   get birthday(): FormControl {
     return this.registrationForm.get('birthday') as FormControl;
   }
-  get gender(): FormControl {
-    return this.registrationForm.get('gender') as FormControl;
+
+  onChange(e: any) {
+    this.gender = e.target.value;
   }
 
-  submitForm() {}
+  submitForm() {
+    const newApplicant: Applicant = {
+      id: Date.now(),
+      name: this.name.value,
+      email: this.email.value,
+      birthday: this.birthday.value,
+      gender: this.gender,
+    };
+
+    this.applicantListService.addApplicant(newApplicant);
+    this.router.navigate(['./list']);
+  }
 }

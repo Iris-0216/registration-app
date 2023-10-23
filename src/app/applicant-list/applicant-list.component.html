@@ -1,1 +1,38 @@
-<p>applicant-list works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Gender</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let applicant of applicantList; let i = index">
+      <th nowrap="true">
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          (click)="updateApplicant(i)"
+        >
+          Edit
+        </button>
+      </th>
+      <th>{{ applicant.name }}</th>
+      <td>{{ applicant.email }}</td>
+      <td>{{ applicant.birthday | date : "yy-MM-dd" }}</td>
+      <td>{{ applicant.gender }}</td>
+      <th nowrap="true">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="deleteApplicant(i)"
+        >
+          Delete
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>

@@ -5,7 +5,7 @@ import { ApplicantEditComponent } from './applicant-edit/applicant-edit.componen
 
 const routes: Routes = [
   { path: '', component: ApplicantListComponent },
-  { path: 'edit', component: ApplicantEditComponent },
+  { path: ':index/edit', component: ApplicantEditComponent },
 ];
 
 @NgModule({
