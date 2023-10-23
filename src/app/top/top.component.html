@@ -1,1 +1,26 @@
-<p>top works!</p>
+<div class="wrapper">
+  <form
+    (ngSubmit)="submitForm()"
+    [formGroup]="registrationForm"
+    class="registration-form"
+  >
+    <div class="title mb-5 mt-2">Registration Form</div>
+    <div class="form-item mb-3">
+      <label class="mb-2">Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="form-item mb-3">
+      <label class="mb-2">Email</label>
+      <input type="text" class="form-control" formControlName="email" />
+    </div>
+    <div class="form-item mb-3">
+      <label class="mb-2">Birthday</label>
+      <input type="text" class="form-control" formControlName="birthday" />
+    </div>
+    <div class="form-item mb-5">
+      <label class="mb-2">Gender</label>
+      <input type="text" class="form-control" formControlName="gender" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
