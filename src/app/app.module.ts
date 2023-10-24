@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopComponent } from './top/top.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorLabelModule } from './shared/modules/error-label/error-label.module';
 
 @NgModule({
   declarations: [AppComponent, TopComponent],
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
+    ErrorLabelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

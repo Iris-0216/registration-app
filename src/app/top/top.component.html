@@ -7,11 +7,37 @@
     <div class="title mb-5 mt-3">Registration Form</div>
     <div class="form-item mb-3">
       <label class="mb-2">Name</label>
-      <input type="text" class="form-control" formControlName="name" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        [ngClass]="{
+          'is-invalid': name.invalid && (name.dirty || name.touched),
+          'is-valid': name.valid && (name.dirty || name.touched)
+        }"
+      />
+      <app-error-label
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        [errors]="name.errors"
+        controlName="Name"
+      ></app-error-label>
     </div>
     <div class="form-item mb-3">
       <label class="mb-2">Email</label>
-      <input type="text" class="form-control" formControlName="email" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid': email.invalid && (email.dirty || email.touched),
+          'is-valid': email.valid && (email.dirty || email.touched)
+        }"
+      />
+      <app-error-label
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        [errors]="email.errors"
+        controlName="Email"
+      ></app-error-label>
     </div>
     <div class="form-item mb-3">
       <label class="mb-2">Birthday</label>
@@ -19,9 +45,20 @@
         class="form-control"
         type="text"
         formControlName="birthday"
+        [maxDate]="today"
         bsDatepicker
         [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+        [ngClass]="{
+          'is-invalid':
+            birthday.invalid && (birthday.dirty || birthday.touched),
+          'is-valid': birthday.valid && (birthday.dirty || birthday.touched)
+        }"
       />
+      <app-error-label
+        *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)"
+        [errors]="birthday.errors"
+        controlName="Birthday"
+      ></app-error-label>
     </div>
     <div class="form-item mb-5">
       <label class="mb-2">Gender</label>
@@ -51,6 +88,14 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="
+        registrationForm.valid && registrationForm.dirty ? null : true
+      "
+    >
+      Submit
+    </button>
   </form>
 </div>

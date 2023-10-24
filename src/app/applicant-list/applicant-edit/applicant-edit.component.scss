@@ -1,0 +1,21 @@
+@import 'src/scss/mixins.scss';
+
+.wrapper{
+  padding: 1rem;
+  position: relative;
+
+  & .edit-form{
+    width:90%;
+    height: 90%;
+    @include center-element;
+
+    & .title{
+      font-size:3rem;
+    }
+    & .form-item{
+      & .options{
+        justify-content: space-around;
+      }
+    }
+  }
+}

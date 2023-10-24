@@ -16,6 +16,7 @@ import { Applicant } from 'src/app/models/applicant';
 })
 export class ApplicantEditComponent {
   isChecked: boolean = false;
+  isChanged: boolean = false;
   editForm!: FormGroup;
   applicant!: Applicant;
   receivedIndex!: number;
@@ -31,13 +32,20 @@ export class ApplicantEditComponent {
     this.applicant = this.applicantListService.getApplicant(this.receivedIndex);
     this.gender = this.applicant!.gender;
     this.buildForm();
-    this.isChecked = this.gender === 'female';
+    if (this.receivedIndex) {
+      this.editForm.patchValue({
+        name: this.applicant.name,
+        email: this.applicant.email,
+        birthday: this.applicant.birthday,
+      });
+      this.isChecked = this.gender === 'female';
+    }
   }
   buildForm() {
     this.editForm = this.fb.group({
-      name: [this.applicant?.name, [Validators.required]],
-      email: [this.applicant?.email, [Validators.required]],
-      birthday: [this.applicant?.birthday, [Validators.required]],
+      name: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      birthday: [null, [Validators.required]],
     });
   }
 
@@ -53,7 +61,13 @@ export class ApplicantEditComponent {
 
   onChange(e: any) {
     this.gender = e.target.value;
+    this.isChanged = true;
   }
+
+  cancel(): void {
+    this.router.navigate(['/list']);
+  }
+
   update() {
     const updatedApplicant: Applicant = {
       id: this.applicant.id,

@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class TopComponent implements OnInit {
   registrationForm!: FormGroup;
   gender = 'female';
+  today: Date = new Date();
   constructor(
     private fb: FormBuilder,
     private applicantListService: ApplicantListService,
@@ -28,7 +29,7 @@ export class TopComponent implements OnInit {
   buildForm() {
     this.registrationForm = this.fb.group({
       name: [null, [Validators.required]],
-      email: [null, [Validators.required]],
+      email: [null, [Validators.email]],
       birthday: [null, [Validators.required]],
     });
   }
