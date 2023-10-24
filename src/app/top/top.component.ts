@@ -28,7 +28,7 @@ export class TopComponent implements OnInit {
   buildForm() {
     this.registrationForm = this.fb.group({
       name: [null, [Validators.required]],
-      email: [null, [Validators.email]],
+      email: [null, [Validators.required, Validators.email]],
       birthday: [null, [Validators.required]],
     });
   }

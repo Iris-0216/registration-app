@@ -27,4 +27,10 @@ export class ApplicantListService {
     this.applicants.splice(index, 1);
     this.applicantsChanged.next(this.applicants.slice());
   }
+  deleteApplicants(indexList: string[]) {
+    this.applicants = this.applicants.filter(
+      (_, index) => !indexList.includes(index.toString())
+    );
+    this.applicantsChanged.next(this.applicants.slice());
+  }
 }

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./applicant-list.component.scss'],
 })
 export class ApplicantListComponent implements OnInit {
+  targets: string[] = [];
+  indexMap: any = {};
   showToast = false;
   applicantList: Applicant[] = [];
   constructor(
@@ -25,6 +27,27 @@ export class ApplicantListComponent implements OnInit {
   }
   deleteApplicant(index: number) {
     this.applicantListService.deleteApplicant(index);
+    this.setToast();
+  }
+
+  onChange(e: any, index: number) {
+    if (e.target.checked) {
+      this.indexMap[index] = true;
+    } else {
+      this.indexMap[index] = false;
+    }
+
+    this.targets = Object.keys(this.indexMap).filter(
+      (index) => this.indexMap[index]
+    );
+  }
+
+  deleteApplicants() {
+    this.applicantListService.deleteApplicants(this.targets);
+    this.setToast();
+  }
+
+  setToast() {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;

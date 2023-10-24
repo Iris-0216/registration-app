@@ -4,9 +4,20 @@
   </div>
 </div>
 <ng-container *ngIf="applicantList.length > 0; else NoRecord">
+  <div class="delete-items-btn">
+    <button
+      type="button"
+      class="btn btn-danger"
+      [disabled]="targets.length > 0 ? null : true"
+      (click)="deleteApplicants()"
+    >
+      Delete Selected Items
+    </button>
+  </div>
   <table class="table">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
@@ -17,6 +28,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let applicant of applicantList; let i = index">
+        <th>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            (change)="onChange($event, i)"
+          />
+        </th>
         <th nowrap="true">
           <button
             type="button"
