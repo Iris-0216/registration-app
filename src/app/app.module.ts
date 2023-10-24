@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TopComponent } from './top/top.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorLabelModule } from './shared/modules/error-label/error-label.module';
+import { ToastModule } from './shared/modules/toast/toast.module';
 
 @NgModule({
   declarations: [AppComponent, TopComponent],
@@ -17,6 +18,7 @@ import { ErrorLabelModule } from './shared/modules/error-label/error-label.modul
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     ErrorLabelModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

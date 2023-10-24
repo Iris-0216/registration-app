@@ -1,4 +1,7 @@
 <div class="wrapper">
+  <div class="hint" *ngIf="showToast">
+    <app-toast hintMessage="Applicant Added!"></app-toast>
+  </div>
   <form
     (ngSubmit)="submitForm()"
     [formGroup]="registrationForm"
@@ -97,5 +100,6 @@
     >
       Submit
     </button>
+    <a routerLink="/list">SignIn as Admin</a>
   </form>
 </div>

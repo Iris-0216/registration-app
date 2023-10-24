@@ -80,7 +80,7 @@ export class ApplicantEditComponent {
       this.receivedIndex,
       updatedApplicant
     );
-
+    this.editForm.reset();
     this.router.navigate(['/list']);
   }
 }

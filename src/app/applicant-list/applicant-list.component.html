@@ -1,38 +1,49 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Birthday</th>
-      <th scope="col">Gender</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let applicant of applicantList; let i = index">
-      <th nowrap="true">
-        <button
-          type="button"
-          class="btn btn-primary btn-sm"
-          (click)="updateApplicant(i)"
-        >
-          Edit
-        </button>
-      </th>
-      <th>{{ applicant.name }}</th>
-      <td>{{ applicant.email }}</td>
-      <td>{{ applicant.birthday | date : "yy-MM-dd" }}</td>
-      <td>{{ applicant.gender }}</td>
-      <th nowrap="true">
-        <button
-          type="button"
-          class="btn btn-danger btn-sm"
-          (click)="deleteApplicant(i)"
-        >
-          Delete
-        </button>
-      </th>
-    </tr>
-  </tbody>
-</table>
+<div class="wrapper" *ngIf="showToast">
+  <div class="hint">
+    <app-toast hintMessage="Applicant Deleted!"></app-toast>
+  </div>
+</div>
+<ng-container *ngIf="applicantList.length > 0; else NoRecord">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Gender</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of applicantList; let i = index">
+        <th nowrap="true">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="updateApplicant(i)"
+          >
+            Edit
+          </button>
+        </th>
+        <th>{{ applicant.name }}</th>
+        <td>{{ applicant.email }}</td>
+        <td>{{ applicant.birthday | date : "yy-MM-dd" }}</td>
+        <td>{{ applicant.gender }}</td>
+        <th nowrap="true">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="deleteApplicant(i)"
+          >
+            Delete
+          </button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-template #NoRecord>
+  <div class="is-empty">No Applicant record exists.</div>
+</ng-template>

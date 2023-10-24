@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./applicant-list.component.scss'],
 })
 export class ApplicantListComponent implements OnInit {
+  showToast = false;
   applicantList: Applicant[] = [];
   constructor(
     private applicantListService: ApplicantListService,
@@ -24,5 +25,9 @@ export class ApplicantListComponent implements OnInit {
   }
   deleteApplicant(index: number) {
     this.applicantListService.deleteApplicant(index);
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 1500);
   }
 }

@@ -7,7 +7,6 @@ import {
 } from '@angular/forms';
 import { ApplicantListService } from '../applicant-list/services/applicant-list.service';
 import { Applicant } from '../models/applicant';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top',
@@ -15,13 +14,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
+  showToast = false;
   registrationForm!: FormGroup;
   gender = 'female';
   today: Date = new Date();
   constructor(
     private fb: FormBuilder,
-    private applicantListService: ApplicantListService,
-    private router: Router
+    private applicantListService: ApplicantListService
   ) {}
   ngOnInit(): void {
     this.buildForm();
@@ -58,6 +57,10 @@ export class TopComponent implements OnInit {
     };
 
     this.applicantListService.addApplicant(newApplicant);
-    this.router.navigate(['./list']);
+    this.registrationForm.reset();
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 1500);
   }
 }

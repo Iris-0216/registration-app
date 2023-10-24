@@ -6,6 +6,7 @@ import { ApplicantListRoutingModule } from './applicant-list-routing.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorLabelModule } from '../shared/modules/error-label/error-label.module';
+import { ToastModule } from '../shared/modules/toast/toast.module';
 
 @NgModule({
   declarations: [ApplicantListComponent, ApplicantEditComponent],
@@ -15,6 +16,7 @@ import { ErrorLabelModule } from '../shared/modules/error-label/error-label.modu
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     ErrorLabelModule,
+    ToastModule,
   ],
 })
 export class ApplicantListModule {}
